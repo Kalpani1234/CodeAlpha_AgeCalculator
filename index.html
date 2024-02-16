@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Age Calculator</title>
+    <style media="screen">
+        /* Styles for the body */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('bg-image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: 15px;
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            /* Horizontally center */
+            align-items: center;
+            /* Vertically center */
+            height: 100vh;
+            /* Make the body take up the full viewport height */
+        }
+
+        /* Global box-sizing property */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Styles for the container */
+        .container {
+    width: 520px;
+    height: auto;
+    background-color: rgba(238, 238, 238, 0.6); 
+    border-radius: 5px;
+}
+
+        /* Styles for the form sections */
+        .base {
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+            display: block;
+            float: none;
+        }
+
+        /* Styles for input blocks */
+        .block {
+            width: 135px;
+            padding: 5px 20px;
+            margin-left: 20px;
+            display: inline-block;
+        }
+
+        /* Styles for the heading */
+        .base h4 {
+            font-size: 26px;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: normal;
+            margin-top: 0px;
+            box-shadow: 0px 2px #bababa;
+            background: white;
+            font-size: 34px;
+            color: navy;
+        }
+
+        /* Styles for input titles */
+        .title {
+            font-size: 20px;
+            text-align: left;
+            font-family: sans-serif;
+            font-weight: normal;
+            line-height: 0.5;
+            letter-spacing: 0.5px;
+            word-spacing: 2.7px;
+            color: #1073d0;
+        }
+
+        /* Styles for input fields */
+        input[type=text] {
+            width: 140px;
+            margin: auto;
+            outline: none;
+            min-height: 50px;
+            border: 2px solid #1073d0;
+            padding: 12px;
+            background-color: #f7f7f7;
+            border-radius: 2px;
+            color: #1073d0;
+            font-size: 17px;
+        }
+
+        /* Styles for input fields on focus */
+        input[type=text]:focus {
+            background-color: #ffffff;
+            border: 2px solid orange;
+            outline: none;
+        }
+
+        /* Styles for the submit button */
+        input[type=button] {
+            width: 150px;
+            margin-left: 35%;
+            margin-top: 40px;
+            outline: none;
+            border: none;
+            border-radius: 2px;
+            background-color: #0761b6;
+            color: #ffffff;
+            padding: 14px 16px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Styles for select menus */
+        select {
+            width: 150px;
+            margin: auto;
+            outline: none;
+            min-height: 50px;
+            border: 2px solid #1073d0;
+            padding: 12px;
+            background-color: #f7f7f7;
+            border-radius: 2px;
+            color: #1073d0;
+            font-size: 17px;
+        }
+
+        /* Styles for select menus on focus */
+        select:focus {
+            background-color: #ffffff;
+            border: 2px solid orange;
+            outline: none;
+        }
+
+        /* Styles for the submit button on hover */
+        input[type=button]:hover {
+            background-color: #003669;
+        }
+
+        /* Styles for displaying the age */
+        #age {
+            display: block;
+            margin: 10px;
+            margin-top: 35px;
+            padding: 10px;
+            padding-bottom: 20px;
+            overflow: hidden;
+            font-family: verdana;
+            font-size: 23px;
+            font-weight: normal;
+            line-height: 1.5;
+            word-spacing: 2.7px;
+            color: navy;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <!-- Age Calculator heading -->
+            <div class="base">
+                <div class="enter">
+                    <h4>Calculate Your Age</h4>
+                </div>
+                <!-- Date input field -->
+                <div class="block">
+                    <p class="title">Date</p>
+                    <input type="text" name="date" id="date" placeholder="dd" required="required" minlength="1"
+                        maxlength="2" />
+                </div>
+                <!-- Month select field -->
+                <div class="block">
+                    <p class="title">Month</p>
+                    <select name="month" id="month" placeholder="mm" required="required">
+                        <option value="">mm</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                <!-- Year input field -->
+                <div class="block">
+                    <p class="title">Year</p>
+                    <input type="text" name="year" id="year" placeholder="yyyy" required="required" minlength="4"
+                        maxlength="4" />
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="base">
+                <div class="enter">
+                    <input type="button" name="submit" value="Submit" onclick="age()" />
+                </div>
+            </div>
+            <!-- Displaying the age -->
+            <div id="age"></div>
+        </form>
+    </div>
+    <!-- JavaScript function for calculating age -->
+    <script type="text/javascript">
+        function age() {
+            // Get the values of the input fields for date, month, and year
+            var d1 = document.getElementById('date').value;
+            var m1 = document.getElementById('month').value;
+            var y1 = document.getElementById('year').value;
+
+            // Check if any of the input fields are empty
+            if (d1 === '' || m1 === '' || y1 === '') {
+                // If any field is empty, display an alert and exit the function
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // Get the current date
+            var date = new Date();
+            var d2 = date.getDate();
+            var m2 = 1 + date.getMonth(); // Note: JavaScript months are zero-based, so January is 0, February is 1, and so on
+            var y2 = date.getFullYear();
+            var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // Number of days in each month
+
+            // Adjust the current date if the input date is greater than the current date
+            if (d1 > d2) {
+                d2 = d2 + month[m2 - 1];
+                m2 = m2 - 1;
+            }
+            // Adjust the current month and year if the input month is greater than the current month
+            if (m1 > m2) {
+                m2 = m2 + 12;
+                y2 = y2 - 1;
+            }
+
+            // Calculate the difference in days, months, and years
+            var d = d2 - d1;
+            var m = m2 - m1;
+            var y = y2 - y1;
+
+            // Display the calculated age
+            document.getElementById('age').innerHTML = 'Your Age is ' + y + ' Years ' + m + ' Months ' + d + ' Days';
+        }
+
+    </script>
+
+    <body>
+        <html>
